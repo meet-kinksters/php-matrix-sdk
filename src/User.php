@@ -1,0 +1,82 @@
+<?php
+
+namespace Aryess\PhpMatrixSdk;
+
+/**
+ * The User class can be used to call user specific functions.
+ *
+ * @package Aryess\PhpMatrixSdk
+ */
+class User {
+
+    protected $userId;
+    protected $displayName;
+    protected $api;
+
+    /**
+     * User constructor.
+     *
+     * @param MatrixHttpApi $api
+     * @param string $userId
+     * @param string|null $displayName
+     * @throws Exceptions\ValidationException
+     */
+    public function __construct(MatrixHttpApi $api, string $userId, ?string $displayName = null) {
+        Util::checkUserId($userId);
+        $this->userId = $userId;
+        $this->displayName = $displayName;
+        $this->api = $api;
+    }
+
+    /**
+     * Get this user's display name.
+     *
+     * @param Room|null $room Optional. When specified, return the display name of the user in this room.
+     * @return string The display name. Defaults to the user ID if not set.
+     */
+    public function getDisplayName(?Room $room = null): string {
+        if($room) {
+            return array_get($room->getMembersDisplayNames(), $this->userId, $this->userId);
+        }
+
+        if(!$this->displayName) {
+            $this->displayName = $this->api->getDisplayName($this->userId);
+        }
+
+        return $this->displayName?:$this->userId;
+    }
+
+    /**
+     * Set this users display name.
+     *
+     * @param string $displayName Display Name
+     * @return mixed //FIXME: add proper type
+     */
+    public function setDisplayName(string $displayName) {
+        $this->displayName = $displayName;
+
+        return $this->api->setDisplayName($this->userId, $displayName);
+    }
+
+    public function getAvatarUrl(): ?string {
+        $mxurl = $this->api->getAvatarUrl($this->userId);
+        $url = null;
+        if($mxurl) {
+            $url = $this->api->getDownloadUrl($mxurl);
+        }
+
+        return $url;
+    }
+
+    /**
+     * Set this users avatar.
+     *
+     * @param $avatarUrl mxc url from previously uploaded
+     * @return mixed //FIXME: add proper type
+     */
+    public function setAvatarUrl($avatarUrl) {
+        return $this->api->setAvatarUrl($this->userId, $avatarUrl);
+    }
+
+
+}
