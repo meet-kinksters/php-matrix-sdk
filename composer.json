@@ -1,18 +1,18 @@
 {
-    "name": ":vendor/:package_name",
+    "name": "Aryess/PhpMatrixSdk",
     "type": "library",
-    "description": ":package_description",
+    "description": "Later",
     "keywords": [
-        ":vendor",
-        ":package_name"
+        "Aryess",
+        "PhpMatrixSdk"
     ],
-    "homepage": "https://github.com/:vendor/:package_name",
+    "homepage": "https://github.com/Aryess/PhpMatrixSdk",
     "license": "MIT",
     "authors": [
         {
-            "name": ":author_name",
-            "email": ":author_email",
-            "homepage": ":author_website",
+            "name": "Yoann Celton",
+            "email": "aryess@github.com",
+            "homepage": "https://github.com/aryess",
             "role": "Developer"
         }
     ],
@@ -25,12 +25,12 @@
     },
     "autoload": {
         "psr-4": {
-            ":vendor\\:package_name\\": "src"
+            "Aryess\\PhpMatrixSdk\\": "src"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            ":vendor\\:package_name\\": "tests"
+            "Aryess\\PhpMatrixSdk\\": "tests"
         }
     },
     "scripts": {

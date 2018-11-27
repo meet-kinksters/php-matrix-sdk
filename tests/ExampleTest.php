@@ -1,6 +1,6 @@
 <?php
 
-namespace League\Skeleton;
+namespace Aryess\PhpMatrixSdk;
 
 class ExampleTest extends \PHPUnit\Framework\TestCase
 {
