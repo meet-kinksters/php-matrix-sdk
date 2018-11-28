@@ -13,11 +13,11 @@ class Util {
      * @throws ValidationException
      */
     public static function checkRoomId(string $roomId) {
-        if(strpos($roomId, '!') !== 0) {
+        if (strpos($roomId, '!') !== 0) {
             throw new ValidationException("RoomIDs start with !");
         }
 
-        if(strpos($roomId, ':') === false) {
+        if (strpos($roomId, ':') === false) {
             throw new ValidationException("RoomIDs must have a domain component, seperated by a :");
         }
     }
@@ -29,11 +29,11 @@ class Util {
      * @throws ValidationException
      */
     public static function checkUserId(string $userId) {
-        if(strpos($userId, '@') !== 0) {
+        if (strpos($userId, '@') !== 0) {
             throw new ValidationException("UserIDs start with @");
         }
 
-        if(strpos($userId, ':') === false) {
+        if (strpos($userId, ':') === false) {
             throw new ValidationException("UserIDs must have a domain component, seperated by a :");
         }
     }
