@@ -7,4 +7,4 @@ namespace Aryess\PhpMatrixSdk\Exceptions;
  *
  * @package Aryess\PhpMatrixSdk\Exceptions
  */
-abstract class MatrixException extends \Exception {}
+class MatrixException extends \Exception {}
