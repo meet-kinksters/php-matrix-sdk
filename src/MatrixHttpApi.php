@@ -6,6 +6,7 @@ use Aryess\PhpMatrixSdk\Exceptions\MatrixException;
 use Aryess\PhpMatrixSdk\Exceptions\MatrixHttpLibException;
 use Aryess\PhpMatrixSdk\Exceptions\MatrixRequestException;
 use GuzzleHttp\Client;
+use GuzzleHttp\Exception\GuzzleException;
 
 /**
  * Contains all raw Matrix HTTP Client-Server API calls.
@@ -23,6 +24,7 @@ use GuzzleHttp\Client;
 class MatrixHttpApi {
 
     const MATRIX_V2_API_PATH = "/_matrix/client/r0";
+    const VERSION = '0.0.1-dev';
 
     /**
      * @var string
@@ -106,7 +108,7 @@ class MatrixHttpApi {
      * @param string|null $setPresence
      * @return array|string
      * @throws MatrixException
-     * @throws \GuzzleHttp\Exception\GuzzleException
+     * @throws GuzzleException
      */
     public function sync(?string $since = null, int $timeoutMs = 30000, $filter = null,
                          bool $fullState = false, ?string $setPresence = null) {
@@ -195,13 +197,12 @@ class MatrixHttpApi {
      * @param bool $returnJson
      * @return array|string
      * @throws MatrixException
-     * @throws \GuzzleHttp\Exception\GuzzleException
      */
     private function send(string $method, string $path, $content = null, array $queryParams = [], array $headers = [],
                           $apiPath = self::MATRIX_V2_API_PATH, $returnJson = true) {
         $options = [];
         if (!in_array('User-Agent', $headers)) {
-            $headers['User-Agent'] = 'php-matrix-sdk/0.0.1-dev'; //TODO: add version
+            $headers['User-Agent'] = 'php-matrix-sdk/'.self::VERSION;
         }
 
         $method = strtoupper($method);
@@ -239,7 +240,7 @@ class MatrixHttpApi {
         while (true) {
             try {
                 $response = $this->client->request($method, $endpoint, $options);
-            } catch (RequestException $e) {
+            } catch (GuzzleException $e) {
                 throw new MatrixHttpLibException($e, $method, $endpoint);
             }
 
