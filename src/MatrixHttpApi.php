@@ -6,7 +6,6 @@ use Aryess\PhpMatrixSdk\Exceptions\MatrixException;
 use Aryess\PhpMatrixSdk\Exceptions\MatrixHttpLibException;
 use Aryess\PhpMatrixSdk\Exceptions\MatrixRequestException;
 use GuzzleHttp\Client;
-use GuzzleHttp\Exception\RequestException;
 
 /**
  * Contains all raw Matrix HTTP Client-Server API calls.
@@ -93,7 +92,10 @@ class MatrixHttpApi {
         $this->client = new Client();
         $this->default429WaitMs = $default429WaitMs;
         $this->useAuthorizationHeader = $useAuthorizationHeader;
+    }
 
+    public function setClient(Client $client) {
+        $this->client = $client;
     }
 
     /**
