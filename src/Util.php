@@ -37,4 +37,10 @@ class Util {
             throw new ValidationException("UserIDs must have a domain component, seperated by a :");
         }
     }
+
+    public static function checkMxcUrl(string $mxcUrl) {
+        if (substr($mxcUrl, 0, 6) != 'mxc://') {
+            throw new ValidationException('MXC URL did not begin with \'mxc://\'');
+        }
+    }
 }
