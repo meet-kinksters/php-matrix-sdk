@@ -24,7 +24,7 @@ use GuzzleHttp\Exception\GuzzleException;
  */
 class MatrixHttpApi {
 
-    const MATRIX_V2_API_PATH = "/_matrix/client/r0";
+    const MATRIX_V2_API_PATH = '/_matrix/client/r0';
     const MATRIX_V2_MEDIA_PATH = '/_matrix/media/r0';
     const VERSION = '0.0.1-dev';
 
@@ -1440,6 +1440,10 @@ class MatrixHttpApi {
         }
 
         return $this->send('GET', '/account/whoami');
+    }
+
+    public function setToken(?string $token) {
+        $this->token = $token;
     }
 
 

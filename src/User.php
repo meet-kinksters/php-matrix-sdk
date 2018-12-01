@@ -33,6 +33,9 @@ class User {
      *
      * @param Room|null $room Optional. When specified, return the display name of the user in this room.
      * @return string The display name. Defaults to the user ID if not set.
+     * @throws Exceptions\MatrixException
+     * @throws Exceptions\MatrixHttpLibException
+     * @throws Exceptions\MatrixRequestException
      */
     public function getDisplayName(?Room $room = null): string {
         if($room) {
@@ -51,6 +54,9 @@ class User {
      *
      * @param string $displayName Display Name
      * @return mixed //FIXME: add proper type
+     * @throws Exceptions\MatrixException
+     * @throws Exceptions\MatrixHttpLibException
+     * @throws Exceptions\MatrixRequestException
      */
     public function setDisplayName(string $displayName) {
         $this->displayName = $displayName;
@@ -58,6 +64,13 @@ class User {
         return $this->api->setDisplayName($this->userId, $displayName);
     }
 
+    /**
+     * @return string|null
+     * @throws Exceptions\MatrixException
+     * @throws Exceptions\MatrixHttpLibException
+     * @throws Exceptions\MatrixRequestException
+     * @throws Exceptions\ValidationException
+     */
     public function getAvatarUrl(): ?string {
         $mxurl = $this->api->getAvatarUrl($this->userId);
         $url = null;
@@ -73,6 +86,9 @@ class User {
      *
      * @param $avatarUrl mxc url from previously uploaded
      * @return mixed //FIXME: add proper type
+     * @throws Exceptions\MatrixException
+     * @throws Exceptions\MatrixHttpLibException
+     * @throws Exceptions\MatrixRequestException
      */
     public function setAvatarUrl($avatarUrl) {
         return $this->api->setAvatarUrl($this->userId, $avatarUrl);
