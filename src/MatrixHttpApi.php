@@ -1327,7 +1327,7 @@ class MatrixHttpApi {
             $content['one_time_keys'] = $oneTimeKeys;
         }
 
-        return $this->send('POST', '/keys/upload', $content);
+        return $this->send('POST', '/keys/upload', $content ?: null);
     }
 
     /**

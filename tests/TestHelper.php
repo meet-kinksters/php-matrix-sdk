@@ -1,5 +1,7 @@
 <?php
 
+namespace Aryess\PhpMatrixSdk;
+
 class TestHelper {
     const EXAMPLE_SYNC = [
         "next_batch" => "s72595_4483_1934",
