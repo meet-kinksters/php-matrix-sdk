@@ -789,7 +789,7 @@ class MatrixHttpApi {
      * @throws MatrixHttpLibException
      * @throws MatrixRequestException
      */
-    public function addUserTag(string $userId, string $roomId, string $tag, ?float $order, array $body = []) {
+    public function addUserTag(string $userId, string $roomId, string $tag, ?float $order = null, array $body = []) {
         if ($order) {
             $body['order'] = $order;
         }

@@ -38,15 +38,15 @@ class User {
      * @throws Exceptions\MatrixRequestException
      */
     public function getDisplayName(?Room $room = null): string {
-        if($room) {
+        if ($room) {
             return array_get($room->getMembersDisplayNames(), $this->userId, $this->userId);
         }
 
-        if(!$this->displayName) {
+        if (!$this->displayName) {
             $this->displayName = $this->api->getDisplayName($this->userId);
         }
 
-        return $this->displayName?:$this->userId;
+        return $this->displayName ?: $this->userId;
     }
 
     /**
@@ -74,7 +74,7 @@ class User {
     public function getAvatarUrl(): ?string {
         $mxurl = $this->api->getAvatarUrl($this->userId);
         $url = null;
-        if($mxurl) {
+        if ($mxurl) {
             $url = $this->api->getDownloadUrl($mxurl);
         }
 
@@ -92,6 +92,10 @@ class User {
      */
     public function setAvatarUrl($avatarUrl) {
         return $this->api->setAvatarUrl($this->userId, $avatarUrl);
+    }
+
+    public function userId(): string {
+        return $this->userId;
     }
 
 

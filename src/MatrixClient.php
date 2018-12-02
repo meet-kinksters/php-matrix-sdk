@@ -93,7 +93,7 @@ class MatrixClient {
      *          A `User` object in this array is shared between all `Room`
      *          objects where the corresponding user is joined.
      */
-    protected $users = [];
+    public $users = [];
     protected $userId;
     protected $token;
     protected $hs;
@@ -423,7 +423,7 @@ class MatrixClient {
             try {
                 $event = $this->api->getStateEvent($roomId, "m.room.encryption");
                 if ($event['algorithm'] === "m.megolm.v1.aes-sha2") {
-                    $room->setEncrytion(true);
+                    $room->enableEncryption();
                 }
             } catch (MatrixRequestException $e) {
                 if ($e->getHttpCode() != 404) {
@@ -526,6 +526,18 @@ class MatrixClient {
         }
 
         return true;
+    }
+
+    public function api(): MatrixHttpApi {
+        return $this->api;
+    }
+
+    public function userId():?string {
+        return $this->userId;
+    }
+
+    public function cacheLevel() {
+        return $this->cacheLevel;
     }
 
 }
