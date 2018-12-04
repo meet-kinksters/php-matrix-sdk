@@ -84,13 +84,13 @@ class User {
     /**
      * Set this users avatar.
      *
-     * @param $avatarUrl mxc url from previously uploaded
+     * @param string $avatarUrl mxc url from previously uploaded
      * @return mixed //FIXME: add proper type
      * @throws Exceptions\MatrixException
      * @throws Exceptions\MatrixHttpLibException
      * @throws Exceptions\MatrixRequestException
      */
-    public function setAvatarUrl($avatarUrl) {
+    public function setAvatarUrl(string $avatarUrl) {
         return $this->api->setAvatarUrl($this->userId, $avatarUrl);
     }
 
