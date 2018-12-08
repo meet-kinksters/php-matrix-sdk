@@ -1,54 +1,69 @@
-# PhpMatrixSdk
-
-[![Latest Version on Packagist][ico-version]][link-packagist]
+# Matrix client SDK for php
 [![Software License][ico-license]](LICENSE.md)
-[![Build Status][ico-travis]][link-travis]
-[![Coverage Status][ico-scrutinizer]][link-scrutinizer]
-[![Quality Score][ico-code-quality]][link-code-quality]
-[![Total Downloads][ico-downloads]][link-downloads]
 
-**Note:** Replace ```Yoann Celton``` ```aryess``` ```https://github.com/aryess``` ```aryess@github.com``` ```Aryess``` ```PhpMatrixSdk``` ```Later``` with their correct values in [README.md](README.md), [CHANGELOG.md](CHANGELOG.md), [CONTRIBUTING.md](CONTRIBUTING.md), [LICENSE.md](LICENSE.md) and [composer.json](composer.json) files, then delete this line. You can run `$ php prefill.php` in the command line to make all replacements at once. Delete the file prefill.php as well.
+This is a Matrix client-server SDK for php 7.0+, mostly copied from [matrix-org/matrix-python-sdk][python-pck]
 
-This is where your description should go. Try and limit it to a paragraph or two, and maybe throw in a mention of what
-PSRs you support to avoid any confusion with users and contributors.
+This package is still a work in progress, and at the current time, not everything has been ported:
+- Missing E2E encryption, need php bindings for the OLM library
+- No live sync, because I'm not going to go into php multithreading
+- Unit tests for the client (soon)
 
-## Structure
+<aside class="warning">
+THIS HAS NOT YET BEEN FULLY TESTED
+</aside>
 
-If any of the following are applicable to your project, then the directory structure should follow industry best practices by being named the following.
+## Installation
 
-```
-bin/        
-config/
-src/
-tests/
-vendor/
-```
+### Stable release
 
+tba
 
-## Install
-
-Via Composer
-
-``` bash
-$ composer require Aryess/PhpMatrixSdk
+### Developement version
+```shell
+git clone https://github.com/aryess/matrix-php-sdk.git
+cd matrix-php-sdk
+composer install
 ```
 
 ## Usage
+Client:
+```php
+require('vendor/autoload.php');
+use Aryess\PhpMatrixSdk\MatrixClient;
 
-``` php
-$skeleton = new Aryess\PhpMatrixSdk();
-echo $skeleton->echoPhrase('Hello, League!');
+$client = new MatrixClient("http://localhost:8008");
+
+// New user
+$token = $client->registerWithPassword("foobar", "monkey");
+
+// Existing user
+$token = $client->login("foobar", "monkey");
+
+$room = $client->createRoom("my_room_alias");
+$room->sendText("Hello!");
 ```
 
-## Change log
+API:
+```php
+require('vendor/autoload.php');
+use Aryess\PhpMatrixSdk\MatrixHttpApi;
 
-Please see [CHANGELOG](CHANGELOG.md) for more information on what has changed recently.
+$matrix = new MatrixHttpApi("http://localhost:8008", $sometoken);
 
-## Testing
-
-``` bash
-$ composer test
+$response = $matrix->sendMessage("!roomid:matrix.org", "Hello!");
 ```
+
+##Structure
+The SDK is split into two modules: ``api`` and ``client``.
+
+###API
+This contains the raw HTTP API calls and has minimal business logic. You can
+set the access token (``token``) to use for requests as well as set a custom
+transaction ID (``txn_id``) which will be incremented for each request.
+
+###Client
+This encapsulates the API module and provides object models such as ``Room``.
+
 
 ## Contributing
 
@@ -81,3 +96,4 @@ The MIT License (MIT). Please see [License File](LICENSE.md) for more informatio
 [link-downloads]: https://packagist.org/packages/Aryess/PhpMatrixSdk
 [link-author]: https://github.com/aryess
 [link-contributors]: ../../contributors
+[python-pck]: https://github.com/matrix-org/matrix-python-sdk
