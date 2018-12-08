@@ -124,7 +124,7 @@ class Room {
      * @throws Exceptions\MatrixRequestException
      */
     public function sendText(string $text) {
-        return $this->api()->sendMessageEvent($this->roomId, $text);
+        return $this->api()->sendMessage($this->roomId, $text);
     }
 
     public function getHtmlContent(string $html, ?string $body = null, string $msgType = 'm.text') {
@@ -395,7 +395,7 @@ class Room {
         ];
     }
 
-    protected function putEvent(array $event) {
+    public function putEvent(array $event) {
         $this->events[] = $event;
         if (count($this->events) > $this->eventHistoryLimit) {
             array_pop($this->events);
@@ -411,7 +411,7 @@ class Room {
         }
     }
 
-    protected function putEphemeralEvent(array $event) {
+    public function putEphemeralEvent(array $event) {
         // Dispatch for room-specific listeners
         foreach ($this->ephemeralListeners as $l) {
             if (!$l['event_type'] || $l['event_type'] == $event['event_type']) {
@@ -830,7 +830,7 @@ class Room {
         return true;
     }
 
-    protected function processStateEvent(array $stateEvent) {
+    public function processStateEvent(array $stateEvent) {
         if (!array_key_exists('type', $stateEvent)) {
             return;
         }
