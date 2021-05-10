@@ -6,23 +6,12 @@ This is a Matrix client-server SDK for php 7.0+, mostly copied from [matrix-org/
 This package is still a work in progress, and at the current time, not everything has been ported:
 - Missing E2E encryption, need php bindings for the OLM library
 - No live sync, because I'm not going to go into php multithreading
-- Unit tests for the client (soon)
-
-<aside class="warning">
-THIS HAS NOT YET BEEN FULLY TESTED
-</aside>
+- Unit tests for the client
 
 ## Installation
 
-### Stable release
-
-tba
-
-### Developement version
-```shell
-git clone https://github.com/aryess/matrix-php-sdk.git
-cd matrix-php-sdk
-composer install
+```
+composer require aryess/php-matrix-sdk
 ```
 
 ## Usage

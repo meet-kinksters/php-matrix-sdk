@@ -16,7 +16,7 @@
         }
     ],
     "replace": {
-        "Aryess/PhpMatrixSdk": "self.version"
+        "aryess/phpmatrixsdk": "self.version"
     },
     "require": {
         "php": "~7.2",
