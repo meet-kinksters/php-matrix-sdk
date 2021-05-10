@@ -1,5 +1,5 @@
 {
-    "name": "Aryess/PhpMatrixSdk",
+    "name": "aryess/php-matrix-sdk",
     "type": "library",
     "description": "Later",
     "keywords": [
@@ -15,6 +15,9 @@
             "role": "Developer"
         }
     ],
+    "replace": {
+        "Aryess/PhpMatrixSdk": "self.version"
+    },
     "require": {
         "php": "~7.2",
         "guzzlehttp/guzzle": "^6.3",
