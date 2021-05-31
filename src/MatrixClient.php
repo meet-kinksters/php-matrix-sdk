@@ -185,6 +185,42 @@ class MatrixClient {
             'device_id' => $deviceId
         ]);
 
+        return $this->finalizeLogin($response, $sync, $limit);
+    }
+
+    /**
+     * Log in with a JWT.
+     *
+     * @param string $token JWT token.
+     * @param bool $sync Indicator whether to sync.
+     * @param int $limit Sync limit.
+     *
+     * @return string Access token.
+     *
+     * @throws \Aryess\PhpMatrixSdk\Exceptions\MatrixException
+     */
+    public function jwtLogin(string $token, bool $sync = true, int $limit = 10): ?string {
+        $response = $this->api->login(
+            'org.matrix.login.jwt',
+            ['token' => $token]
+        );
+
+        return $this->finalizeLogin($response, $sync, $limit);
+    }
+
+    /**
+     * Finalize login, e.g. after password or JWT login.
+     *
+     * @param array $response Login response array.
+     * @param bool $sync Sync flag.
+     * @param int $limit Sync limit.
+     *
+     * @return string Access token.
+     *
+     * @throws \Aryess\PhpMatrixSdk\Exceptions\MatrixException
+     * @throws \Aryess\PhpMatrixSdk\Exceptions\MatrixRequestException
+     */
+    protected function finalizeLogin(array $response, bool $sync, int $limit): string {
         $this->userId = array_get($response, 'user_id');
         $this->token = array_get($response, 'access_token');
         $this->hs = array_get($response, 'home_server');
