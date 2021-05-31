@@ -652,7 +652,7 @@ class MatrixHttpApi {
     public function inviteUser(string $roomId, string $userId) {
         $body = ['user_id' => $userId];
 
-        return $this->send('POST', sprintf('.rooms/%s/invite', urlencode($roomId)), $body);
+        return $this->send('POST', sprintf('/rooms/%s/invite', urlencode($roomId)), $body);
     }
 
     /**
