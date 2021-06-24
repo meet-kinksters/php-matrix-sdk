@@ -8,6 +8,7 @@ use Aryess\PhpMatrixSdk\Exceptions\MatrixRequestException;
 use Aryess\PhpMatrixSdk\Exceptions\ValidationException;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\GuzzleException;
+use GuzzleHttp\RequestOptions;
 
 /**
  * Contains all raw Matrix HTTP Client-Server API calls.
@@ -63,7 +64,7 @@ class MatrixHttpApi {
     /**
      * @var bool
      */
-    private $vallidateCert;
+    private $validateCert;
 
     /**
      * @var Client
@@ -94,7 +95,7 @@ class MatrixHttpApi {
         $this->token = $token;
         $this->identity = $identity;
         $this->txnId = 0;
-        $this->vallidateCert = true;
+        $this->validateCert = true;
         $this->client = new Client();
         $this->default429WaitMs = $default429WaitMs;
         $this->useAuthorizationHeader = $useAuthorizationHeader;
@@ -139,7 +140,7 @@ class MatrixHttpApi {
     }
 
     public function validateCertificate(bool $validity) {
-        $this->vallidateCert = $validity;
+        $this->validateCert = $validity;
     }
 
     /**
@@ -925,17 +926,19 @@ class MatrixHttpApi {
             $queryParams['user_id'] = $this->identity;
         }
 
-        $endpoint = $this->baseUrl . $apiPath . $path;
-        if ($headers['Content-Type'] == "application/json" && $content != null) {
-            $content = json_encode($content);
-        }
-
         $options = array_merge($options, [
             'headers' => $headers,
             'query' => $queryParams,
-            'body' => $content,
-            'verify' => $this->vallidateCert,
+            'verify' => $this->validateCert,
         ]);
+
+        $endpoint = $this->baseUrl . $apiPath . $path;
+        if ($headers['Content-Type'] == "application/json" && $content !== null) {
+            $options[RequestOptions::JSON] = $content;
+        }
+        else {
+            $options[RequestOptions::FORM_PARAMS] = $content;
+        }
 
         $responseBody = '';
         while (true) {
