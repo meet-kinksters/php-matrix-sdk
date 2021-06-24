@@ -20,6 +20,8 @@ use GuzzleHttp\Exception\GuzzleException;
  *      $response = $matrix.sync();
  *      $response = $matrix->sendMessage("!roomid:matrix.org", "Hello!");
  *
+ * @see https://matrix.org/docs/spec/client_server/latest
+ *
  * @package Aryess\PhpMatrixSdk
  */
 class MatrixHttpApi {
