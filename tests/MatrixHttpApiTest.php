@@ -51,7 +51,8 @@ class MatrixHttpApiTest extends BaseTestCase {
      */
     protected $api;
 
-    protected function setUp() {
+    protected function setUp(): void 
+    {
         parent::setUp();
         $this->api = new MatrixHttpApi('http://example.com');
     }
@@ -374,7 +375,7 @@ class MatrixHttpApiTest extends BaseTestCase {
         $req = array_get($container, '0.request');
 
         $this->assertEquals('GET', $req->getMethod());
-        $this->assertContains($this->token, $req->getRequestTarget());
+        $this->assertStringContainsString($this->token, $req->getRequestTarget());
     }
 
     public function testSendUserId() {
@@ -390,7 +391,7 @@ class MatrixHttpApiTest extends BaseTestCase {
         $req = array_get($container, '0.request');
 
         $this->assertEquals('GET', $req->getMethod());
-        $this->assertContains(urlencode($this->userId), $req->getRequestTarget());
+        $this->assertStringContainsString(urlencode($this->userId), $req->getRequestTarget());
     }
 
     public function testSendUnsupMethod() {
@@ -554,7 +555,7 @@ class MatrixHttpApiTest extends BaseTestCase {
         $req = array_get($container, '0.request');
 
         $this->assertEquals('GET', $req->getMethod());
-        $this->assertContains($req->getRequestTarget(), $whoamiUrl);
+        $this->assertStringContainsString($req->getRequestTarget(), $whoamiUrl);
     }
 
     public function testWhoamiUnauth() {

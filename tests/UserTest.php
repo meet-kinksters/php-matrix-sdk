@@ -26,7 +26,8 @@ class UserTest extends BaseTestCase {
      */
     protected $room;
 
-    protected function setUp() {
+    protected function setUp(): void 
+    {
         parent::setUp();
         $this->client = new MatrixClient(self::HOSTNAME);
         $this->user = new User($this->client->api(), $this->userId);
