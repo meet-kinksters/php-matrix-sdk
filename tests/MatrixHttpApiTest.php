@@ -51,7 +51,8 @@ class MatrixHttpApiTest extends BaseTestCase {
      */
     protected $api;
 
-    protected function setUp() {
+    protected function setUp(): void 
+    {
         parent::setUp();
         $this->api = new MatrixHttpApi('http://example.com');
     }
