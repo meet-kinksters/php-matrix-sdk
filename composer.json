@@ -19,7 +19,7 @@
         "aryess/phpmatrixsdk": "self.version"
     },
     "require": {
-        "php": "~7.2",
+        "php": "~7.2|^8",
         "guzzlehttp/guzzle": "^6.3",
         "rappasoft/laravel-helpers": "^1.0",
         "ext-json": "*"
