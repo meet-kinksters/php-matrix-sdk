@@ -1,11 +1,14 @@
 {
-    "name": "aryess/php-matrix-sdk",
+    "name": "meet-kinksters/php-matrix-sdk",
     "type": "library",
-    "description": "Later",
+    "description": "PHP SDK for interacting with Matrix/Synapse.",
     "keywords": [
-        "PhpMatrixSdk"
+        "Matrix",
+        "Matrix Chat",
+        "Synapse",
+        "PHP"
     ],
-    "homepage": "https://github.com/Aryess/PhpMatrixSdk",
+    "homepage": "https://github.com/meet-kinksters/php-matrix-sdk",
     "license": "MIT",
     "authors": [
         {
@@ -13,13 +16,20 @@
             "email": "aryess@github.com",
             "homepage": "https://github.com/aryess",
             "role": "Developer"
+        },
+        {
+            "name": "Brad Jones",
+            "email": "brad@kinksters.dating",
+            "homepage": "https://github.com/bradjones1",
+            "role": "Developer"
         }
     ],
     "replace": {
-        "aryess/phpmatrixsdk": "self.version"
+        "aryess/phpmatrixsdk": "self.version",
+        "aryess/php-matrix-sdk": "self.version"
     },
     "require": {
-        "php": "~7.2|^8",
+        "php": "~7.4|^8",
         "guzzlehttp/guzzle": "^6.3",
         "rappasoft/laravel-helpers": "^1.0",
         "ext-json": "*"
