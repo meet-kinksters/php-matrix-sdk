@@ -1,10 +1,10 @@
 <?php
 
-namespace Aryess\PhpMatrixSdk\Exceptions;
+namespace MatrixPhp\Exceptions;
 
 /**
  * A generic Matrix error. Specific errors will subclass this.
  *
- * @package Aryess\PhpMatrixSdk\Exceptions
+ * @package MatrixPhp\Exceptions
  */
 class MatrixException extends \Exception {}

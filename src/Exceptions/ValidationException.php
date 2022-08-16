@@ -1,10 +1,10 @@
 <?php
 
-namespace Aryess\PhpMatrixSdk\Exceptions;
+namespace MatrixPhp\Exceptions;
 
 /**
  * Simple exception to differentiate validation exception from other exceptions
  *
- * @package Aryess\PhpMatrixSdk\Exceptions
+ * @package MatrixPhp\Exceptions
  */
 class ValidationException extends \Exception {}

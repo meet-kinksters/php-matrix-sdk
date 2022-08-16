@@ -1,6 +1,7 @@
 # The MIT License (MIT)
 
-Copyright (c) 2018 Yoann Celton <aryess@github.com>
+Copyright (c) 2018 Yoann Celton <aryess@github.com> and contributors.
+Copyright (c) 2022-present Meet Kinksters, Inc. <brad@kinksters.dating> and contributors.
 
 > Permission is hereby granted, free of charge, to any person obtaining a copy
 > of this software and associated documentation files (the "Software"), to deal

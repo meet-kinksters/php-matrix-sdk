@@ -1,11 +1,11 @@
 <?php
 
-namespace Aryess\PhpMatrixSdk;
+namespace MatrixPhp;
 
 /**
  * The User class can be used to call user specific functions.
  *
- * @package Aryess\PhpMatrixSdk
+ * @package MatrixPhp
  */
 class User {
 

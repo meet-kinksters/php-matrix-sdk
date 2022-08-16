@@ -1,10 +1,10 @@
 <?php
 
-namespace Aryess\PhpMatrixSdk;
+namespace MatrixPhp\Tests;
 
-use Aryess\PhpMatrixSdk\Exceptions\MatrixException;
-use Aryess\PhpMatrixSdk\Exceptions\MatrixHttpLibException;
-use Aryess\PhpMatrixSdk\Exceptions\ValidationException;
+use MatrixPhp\Exceptions\MatrixException;
+use MatrixPhp\Exceptions\MatrixHttpLibException;
+use MatrixPhp\Exceptions\ValidationException;
 use GuzzleHttp\Client;
 use GuzzleHttp\Psr7\Response;
 use GuzzleHttp\Psr7\Request;
@@ -51,7 +51,7 @@ class MatrixHttpApiTest extends BaseTestCase {
      */
     protected $api;
 
-    protected function setUp(): void 
+    protected function setUp(): void
     {
         parent::setUp();
         $this->api = new MatrixHttpApi('http://example.com');

@@ -2,8 +2,7 @@
 
 Contributions are **welcome** and will be fully **credited**.
 
-We accept contributions via Pull Requests on [Github](https://github.com/Aryess/PhpMatrixSdk).
-
+We accept contributions via Pull Requests on [Github](https://github.com/meet-kinksters/php-matrix-sdk).
 
 ## Pull Requests
 

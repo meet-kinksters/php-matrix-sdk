@@ -1,6 +1,6 @@
 <?php
 
-namespace Aryess\PhpMatrixSdk;
+namespace MatrixPhp\Tests;
 
 class TestHelper {
     const EXAMPLE_SYNC = [

@@ -1,11 +1,11 @@
 <?php
 
-namespace Aryess\PhpMatrixSdk\Exceptions;
+namespace MatrixPhp\Exceptions;
 
 /**
  * The home server gave an unexpected response.
  *
- * @package Aryess\PhpMatrixSdk\Exceptions
+ * @package MatrixPhp\Exceptions
  */
 class MatrixUnexpectedResponse extends MatrixException {
 

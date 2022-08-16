@@ -1,11 +1,11 @@
 <?php
 
-namespace Aryess\PhpMatrixSdk;
+namespace MatrixPhp;
 
-use Aryess\PhpMatrixSdk\Exceptions\MatrixException;
-use Aryess\PhpMatrixSdk\Exceptions\MatrixHttpLibException;
-use Aryess\PhpMatrixSdk\Exceptions\MatrixRequestException;
-use Aryess\PhpMatrixSdk\Exceptions\ValidationException;
+use MatrixPhp\Exceptions\MatrixException;
+use MatrixPhp\Exceptions\MatrixHttpLibException;
+use MatrixPhp\Exceptions\MatrixRequestException;
+use MatrixPhp\Exceptions\ValidationException;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\GuzzleException;
 use GuzzleHttp\RequestOptions;
@@ -23,7 +23,7 @@ use GuzzleHttp\RequestOptions;
  *
  * @see https://matrix.org/docs/spec/client_server/latest
  *
- * @package Aryess\PhpMatrixSdk
+ * @package MatrixPhp
  */
 class MatrixHttpApi {
 

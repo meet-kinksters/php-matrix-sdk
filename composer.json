@@ -39,12 +39,12 @@
     },
     "autoload": {
         "psr-4": {
-            "Aryess\\PhpMatrixSdk\\": "src"
+            "MatrixPhp\\": "src"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Aryess\\PhpMatrixSdk\\": "tests"
+            "MatrixPhp\\Tests\\": "tests"
         }
     },
     "scripts": {

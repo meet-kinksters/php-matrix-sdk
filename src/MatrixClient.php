@@ -1,11 +1,11 @@
 <?php
 
-namespace Aryess\PhpMatrixSdk;
+namespace MatrixPhp;
 
-use Aryess\PhpMatrixSdk\Crypto\OlmDevice;
-use Aryess\PhpMatrixSdk\Exceptions\MatrixRequestException;
-use Aryess\PhpMatrixSdk\Exceptions\MatrixUnexpectedResponse;
-use Aryess\PhpMatrixSdk\Exceptions\ValidationException;
+use MatrixPhp\Crypto\OlmDevice;
+use MatrixPhp\Exceptions\MatrixRequestException;
+use MatrixPhp\Exceptions\MatrixUnexpectedResponse;
+use MatrixPhp\Exceptions\ValidationException;
 use phpDocumentor\Reflection\Types\Callable_;
 
 //TODO: port OLM bindings
@@ -40,7 +40,7 @@ define('ENCRYPTION_SUPPORT', false);
  *
  *    function globalCallback($incoming_event);
  *
- * @package Aryess\PhpMatrixSdk
+ * @package MatrixPhp
  */
 class MatrixClient {
 
@@ -197,7 +197,7 @@ class MatrixClient {
      *
      * @return string Access token.
      *
-     * @throws \Aryess\PhpMatrixSdk\Exceptions\MatrixException
+     * @throws \MatrixPhp\Exceptions\MatrixException
      */
     public function jwtLogin(string $token, bool $sync = true, int $limit = 10): ?string {
         $response = $this->api->login(
@@ -217,8 +217,8 @@ class MatrixClient {
      *
      * @return string Access token.
      *
-     * @throws \Aryess\PhpMatrixSdk\Exceptions\MatrixException
-     * @throws \Aryess\PhpMatrixSdk\Exceptions\MatrixRequestException
+     * @throws \MatrixPhp\Exceptions\MatrixException
+     * @throws \MatrixPhp\Exceptions\MatrixRequestException
      */
     protected function finalizeLogin(array $response, bool $sync, int $limit): string {
         $this->userId = array_get($response, 'user_id');

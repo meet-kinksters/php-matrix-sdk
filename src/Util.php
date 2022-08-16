@@ -1,8 +1,8 @@
 <?php
 
-namespace Aryess\PhpMatrixSdk;
+namespace MatrixPhp;
 
-use Aryess\PhpMatrixSdk\Exceptions\ValidationException;
+use MatrixPhp\Exceptions\ValidationException;
 
 class Util {
 

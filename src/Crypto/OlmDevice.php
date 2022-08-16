@@ -1,13 +1,13 @@
 <?php
 
-namespace Aryess\PhpMatrixSdk\Crypto;
+namespace MatrixPhp\Crypto;
 
-use Aryess\PhpMatrixSdk\MatrixHttpApi;
+use MatrixPhp\MatrixHttpApi;
 
 /**
  * OlmDevice stub for typehinting
  *
- * @package Aryess\PhpMatrixSdk\Crypto
+ * @package MatrixPhp\Crypto
  */
 class OlmDevice {
 

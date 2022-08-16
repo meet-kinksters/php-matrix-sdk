@@ -1,8 +1,8 @@
 <?php
 
-namespace Aryess\PhpMatrixSdk;
+namespace MatrixPhp;
 
-use Aryess\PhpMatrixSdk\Exceptions\MatrixRequestException;
+use MatrixPhp\Exceptions\MatrixRequestException;
 use function GuzzleHttp\default_ca_bundle;
 use http\Exception;
 use phpDocumentor\Reflection\DocBlock\Tags\Param;
@@ -13,7 +13,7 @@ use phpDocumentor\Reflection\DocBlock\Tags\Param;
  *  NOTE: This should ideally be called from within the Client.
  *  NOTE: This does not verify the room with the Home Server.
  *
- * @package Aryess\PhpMatrixSdk
+ * @package MatrixPhp
  */
 class Room {
 
@@ -265,14 +265,14 @@ class Room {
      *
      * @param string $geoUri The geo uri representing the location.
      * @param string $name Description for the location.
-     * @param string|null $thumbUrl URL to the thumbnail of the location.
      * @param array $thumbInfo Metadata about the thumbnail, type ImageInfo.
+     * @param string|null $thumbUrl URL to the thumbnail of the location.
      * @return array|string
      * @throws Exceptions\MatrixException
      * @throws Exceptions\MatrixHttpLibException
      * @throws Exceptions\MatrixRequestException
      */
-    public function sendLocation(string $geoUri, string $name, ?string $thumbUrl = null, ?array $thumbInfo) {
+    public function sendLocation(string $geoUri, string $name, ?array $thumbInfo, ?string $thumbUrl = null) {
         return $this->api()->sendLocation($this->roomId, $geoUri, $name, $thumbUrl, $thumbInfo);
     }
 

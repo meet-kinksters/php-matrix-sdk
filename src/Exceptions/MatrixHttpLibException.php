@@ -1,11 +1,11 @@
 <?php
 
-namespace Aryess\PhpMatrixSdk\Exceptions;
+namespace MatrixPhp\Exceptions;
 
 /**
  * The library used for http requests raised an exception.
  *
- * @package Aryess\PhpMatrixSdk\Exceptions
+ * @package MatrixPhp\Exceptions
  */
 class MatrixHttpLibException extends MatrixException {
 

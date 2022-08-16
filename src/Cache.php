@@ -1,6 +1,6 @@
 <?php
 
-namespace Aryess\PhpMatrixSdk;
+namespace MatrixPhp;
 
 /**
  * Cache constants used when instantiating Matrix Client to specify level of caching
@@ -8,7 +8,7 @@ namespace Aryess\PhpMatrixSdk;
  *  TODO: rather than having CACHE.NONE as arg to MatrixClient, there should be a separate
  *      LightweightMatrixClient that only implements global listeners and doesn't hook into
  *      User, Room, etc. classes at all.
- * @package Aryess\PhpMatrixSdk
+ * @package MatrixPhp
  */
 class Cache {
     const NONE = -1;
