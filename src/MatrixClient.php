@@ -192,6 +192,7 @@ class MatrixClient {
      * Log in with a JWT.
      *
      * @param string $token JWT token.
+     * @param bool $refreshToken Whether to request a refresh token.
      * @param bool $sync Indicator whether to sync.
      * @param int $limit Sync limit.
      *
@@ -199,10 +200,13 @@ class MatrixClient {
      *
      * @throws \MatrixPhp\Exceptions\MatrixException
      */
-    public function jwtLogin(string $token, bool $sync = true, int $limit = 10): ?string {
+    public function jwtLogin(string $token, bool $refreshToken = false, bool $sync = true, int $limit = 10): ?string {
         $response = $this->api->login(
             'org.matrix.login.jwt',
-            ['token' => $token]
+            [
+                'token' => $token,
+                'refresh_token' => $refreshToken,
+            ]
         );
 
         return $this->finalizeLogin($response, $sync, $limit);

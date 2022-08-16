@@ -10,8 +10,12 @@ namespace MatrixPhp\Exceptions;
 class MatrixHttpLibException extends MatrixException {
 
     public function __construct(\Exception $originalException, string $method, string $endpoint) {
-        $msg = "Something went wrong in %s requesting %s: %s";
-        $msg = sprintf($msg, $method, $endpoint, $originalException);
+        $msg = sprintf(
+            'Something went wrong in %s requesting %s: %s',
+            $method,
+            $endpoint,
+            $originalException->getMessage(),
+        );
         parent::__construct($msg, $originalException->getCode(), $originalException);
     }
 }
