@@ -9,12 +9,11 @@ namespace MatrixPhp\Exceptions;
  */
 class MatrixRequestException extends MatrixException {
 
-    protected $httpCode;
     protected $content;
     public readonly ?string $errCode;
 
     public function __construct(int $code = 0, string $content = "") {
-        parent::__construct("$code: $content");
+        parent::__construct($content, $code);
         $this->httpCode = $code;
         $this->content = $content;
         try {
@@ -30,7 +29,7 @@ class MatrixRequestException extends MatrixException {
      * @return int
      */
     public function getHttpCode(): int {
-        return $this->httpCode;
+        return $this->getCode();
     }
 
     /**
