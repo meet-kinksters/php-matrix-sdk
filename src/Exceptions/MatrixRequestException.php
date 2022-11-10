@@ -11,11 +11,19 @@ class MatrixRequestException extends MatrixException {
 
     protected $httpCode;
     protected $content;
+    public readonly ?string $errCode;
 
     public function __construct(int $code = 0, string $content = "") {
         parent::__construct("$code: $content");
         $this->httpCode = $code;
         $this->content = $content;
+        try {
+            $decoded = \json_decode($content, TRUE, 512, JSON_THROW_ON_ERROR);
+            $this->errCode = $decoded['errcode'] ?? NULL;
+        }
+        catch (\JsonException) {
+            $this->errCode = NULL;
+        }
     }
 
     /**
