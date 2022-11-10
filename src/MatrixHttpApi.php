@@ -928,9 +928,10 @@ class MatrixHttpApi {
         }
 
         $options = array_merge($options, [
-            'headers' => $headers,
-            'query' => $queryParams,
-            'verify' => $this->validateCert,
+            RequestOptions::HEADERS => $headers,
+            RequestOptions::QUERY => $queryParams,
+            RequestOptions::VERIFY => $this->validateCert,
+            RequestOptions::HTTP_ERRORS => FALSE,
         ]);
 
         $endpoint = $this->baseUrl . $apiPath . $path;
@@ -939,7 +940,6 @@ class MatrixHttpApi {
         }
         else {
             $options[RequestOptions::FORM_PARAMS] = $content;
-            $options[RequestOptions::HTTP_ERRORS] = FALSE;
         }
 
         $responseBody = '';
