@@ -950,12 +950,14 @@ class MatrixHttpApi {
                 throw new MatrixHttpLibException($e, $method, $endpoint);
             }
 
-            if ($response->getStatusCode() != 429) {
-                $responseBody = $response->getBody()->getContents();
-            }
+            $responseBody = $response->getBody()->getContents();
 
             if ($response->getStatusCode() >= 500) {
                 throw new MatrixUnexpectedResponse($responseBody);
+            }
+
+            if ($response->getStatusCode() != 429) {
+                break;
             }
 
             $jsonResponse = json_decode($responseBody, true);
