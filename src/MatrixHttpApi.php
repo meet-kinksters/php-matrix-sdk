@@ -5,6 +5,7 @@ namespace MatrixPhp;
 use MatrixPhp\Exceptions\MatrixException;
 use MatrixPhp\Exceptions\MatrixHttpLibException;
 use MatrixPhp\Exceptions\MatrixRequestException;
+use MatrixPhp\Exceptions\MatrixUnexpectedResponse;
 use MatrixPhp\Exceptions\ValidationException;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\GuzzleException;
@@ -938,6 +939,7 @@ class MatrixHttpApi {
         }
         else {
             $options[RequestOptions::FORM_PARAMS] = $content;
+            $options[RequestOptions::HTTP_ERRORS] = FALSE;
         }
 
         $responseBody = '';
@@ -950,7 +952,10 @@ class MatrixHttpApi {
 
             if ($response->getStatusCode() != 429) {
                 $responseBody = $response->getBody()->getContents();
-                break;
+            }
+
+            if ($response->getStatusCode() >= 500) {
+                throw new MatrixUnexpectedResponse($responseBody);
             }
 
             $jsonResponse = json_decode($responseBody, true);
