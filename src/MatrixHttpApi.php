@@ -627,7 +627,7 @@ class MatrixHttpApi {
      * @throws MatrixRequestException
      */
     public function leaveRoom(string $roomId) {
-        return $this->send('POST', sprintf('/rooms/%s/leave', urlencode($roomId)), []);
+        return $this->send('POST', sprintf('/rooms/%s/leave', urlencode($roomId)));
     }
 
     /**
