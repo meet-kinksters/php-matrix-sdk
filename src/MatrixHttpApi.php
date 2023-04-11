@@ -913,7 +913,7 @@ class MatrixHttpApi {
             throw new MatrixException("Unsupported HTTP method: $method");
         }
 
-        if (!in_array('Content-Type', $headers)) {
+        if (!in_array('Content-Type', array_keys($headers))) {
             $headers['Content-Type'] = 'application/json';
         }
 
@@ -939,7 +939,7 @@ class MatrixHttpApi {
             $options[RequestOptions::JSON] = $content;
         }
         else {
-            $options[RequestOptions::FORM_PARAMS] = $content;
+            $options[RequestOptions::BODY] = $content;
         }
 
         $responseBody = '';
