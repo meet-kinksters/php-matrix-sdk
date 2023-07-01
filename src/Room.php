@@ -868,7 +868,7 @@ class Room {
                         if ($econtent['membership'] == 'join') {
                             $userId = $stateEvent['state_key'];
                             $this->addMember($userId, array_get($econtent, 'displayname'));
-                        } elseif (in_array(econtent["membership"], ["leave", "kick", "invite"])) {
+                        } elseif (in_array($econtent["membership"], ["leave", "kick", "invite"])) {
                             unset($this->_members[array_get($stateEvent, 'state_key')]);
                         }
                     }
