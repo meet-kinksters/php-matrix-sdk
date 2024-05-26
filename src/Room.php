@@ -493,7 +493,8 @@ class Room {
     public function leave() {
         try {
             $this->api()->leaveRoom($this->roomId);
-            $this->client->forgetRoom($this->roomId);
+            // @todo This is not implemented from the original library?
+            // $this->client->forgetRoom($this->roomId);
         } catch (MatrixRequestException $e) {
             return false;
         }
@@ -601,12 +602,13 @@ class Room {
             foreach ($response as $chunk) {
                 if ($aliases = array_get($chunk, 'content.aliases')) {
                     $this->aliases = $aliases;
-                    return $this->aliases == $oldAliases;
                 }
             }
         } catch (MatrixRequestException $e) {
             return false;
         }
+        // @todo Validate this logic.
+        return $this->aliases !== $oldAliases;
     }
 
     /**
@@ -868,7 +870,7 @@ class Room {
                         if ($econtent['membership'] == 'join') {
                             $userId = $stateEvent['state_key'];
                             $this->addMember($userId, array_get($econtent, 'displayname'));
-                        } elseif (in_array(econtent["membership"], ["leave", "kick", "invite"])) {
+                        } elseif (in_array($econtent["membership"], ["leave", "kick", "invite"])) {
                             unset($this->_members[array_get($stateEvent, 'state_key')]);
                         }
                     }

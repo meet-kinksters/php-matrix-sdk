@@ -11,7 +11,12 @@ use MatrixPhp\MatrixHttpApi;
  */
 class OlmDevice {
 
-    public function __construct(MatrixHttpApi $client, string $userId, ?string $deviceId, array &$encryptionConf) {
+    public function __construct(
+        protected MatrixHttpApi $client,
+        protected string $userId,
+        protected ?string $deviceId,
+        protected array &$encryptionConf,
+    ) {
     }
 
     public function uploadIdentityKeys() {

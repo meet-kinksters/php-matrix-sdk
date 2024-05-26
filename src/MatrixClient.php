@@ -56,11 +56,6 @@ class MatrixClient {
     protected $encryption;
 
     /**
-     * @var null
-     */
-    protected $encryptionConf;
-
-    /**
      * @var MatrixHttpApi
      */
     protected $api;
@@ -112,8 +107,16 @@ class MatrixClient {
      * @throws Exceptions\MatrixRequestException
      * @throws ValidationException
      */
-    public function __construct(string $baseUrl, ?string $token = null, bool $validCertCheck = true, int $syncFilterLimit = 20,
-                                int $cacheLevel = Cache::ALL, $encryption = false, $encryptionConf = []) {
+    public function __construct(
+        string $baseUrl,
+        ?string $token = null,
+        bool $validCertCheck = true,
+        int $syncFilterLimit = 20,
+        int $cacheLevel = Cache::ALL,
+        $encryption = false,
+        protected $encryptionConf = [],
+    ) {
+        // @phpstan-ignore-next-line
         if ($encryption && ENCRYPTION_SUPPORT) {
             throw new ValidationException('Failed to enable encryption. Please make sure the olm library is available.');
         }
@@ -121,7 +124,6 @@ class MatrixClient {
         $this->api = new MatrixHttpApi($baseUrl, $token);
         $this->api->validateCertificate($validCertCheck);
         $this->encryption = $encryption;
-        $this->encryptionConf = $encryptionConf;
         if (!in_array($cacheLevel, Cache::$levels)) {
             throw new ValidationException('$cacheLevel must be one of Cache::NONE, Cache::SOME, Cache::ALL');
         }
@@ -390,6 +392,7 @@ class MatrixClient {
     public function listenForever(int $timeoutMs = 30000, ?callable $exceptionHandler = null, int $badSyncTimeout = 5) {
         $tempBadSyncTimeout = $badSyncTimeout;
         $this->shouldListen = true;
+        // @phpstan-ignore-next-line
         while ($this->shouldListen) {
             try {
                 $this->sync($timeoutMs);
@@ -404,7 +407,7 @@ class MatrixClient {
                 } else {
                     throw $e;
                 }
-            } catch (Exception $e) {
+            } catch (\Exception $e) {
                 if (is_callable($exceptionHandler)) {
                     $exceptionHandler($e);
                 } else {
@@ -509,8 +512,10 @@ class MatrixClient {
             $this->olmDevice->updateOneTimeKeysCounts($response['device_one_time_keys_count']);
         }
         foreach (array_get($response, 'rooms.join', []) as $roomId => $syncRoom) {
-            foreach ($this->inviteListeners as $cb) {
-                $cb($roomId, $inviteRoom['invite_state']);
+            if (!empty($inviteRoom)) {
+                foreach ($this->inviteListeners as $cb) {
+                    $cb($roomId, $inviteRoom['invite_state']);
+                }
             }
             if (!array_key_exists($roomId, $this->rooms)) {
                 $this->mkRoom($roomId);

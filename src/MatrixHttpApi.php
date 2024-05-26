@@ -323,7 +323,7 @@ class MatrixHttpApi {
         if (!$txnId) {
             $txnId = $this->makeTxnId();
         }
-        $path = sprintf('/rooms/%s/send/%s/%s', urlencode($roomId), urlencode($eventType), urlencode($txnId));
+        $path = sprintf('/rooms/%u/send/%s/%s', $roomId, urlencode($eventType), urlencode($txnId));
         $params = [];
         if ($timestamp) {
             $params['ts'] = $timestamp;
@@ -350,7 +350,7 @@ class MatrixHttpApi {
         if (!$txnId) {
             $txnId = $this->makeTxnId();
         }
-        $path = sprintf('/rooms/%s/redact/%s/%s', urlencode($roomId), urlencode($eventId), urlencode($txnId));
+        $path = sprintf('/rooms/%u/redact/%s/%s', $roomId, urlencode($eventId), urlencode($txnId));
         $params = [];
         $content = [];
         if ($reason) {
@@ -1024,7 +1024,7 @@ class MatrixHttpApi {
 
     /**
      * @param string $userId
-     * @return mixed
+     * @return ?string
      * @throws MatrixException
      * @throws MatrixHttpLibException
      * @throws MatrixRequestException
@@ -1432,7 +1432,7 @@ class MatrixHttpApi {
     }
 
     private function makeTxnId(): int {
-        $txnId = $this->txnId . (int)(microtime(true) * 1000);
+        $txnId = (int) ($this->txnId . (int) (microtime(true) * 1000));
         $this->txnId++;
 
         return $txnId;

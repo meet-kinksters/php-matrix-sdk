@@ -9,13 +9,13 @@ namespace MatrixPhp\Exceptions;
  */
 class MatrixRequestException extends MatrixException {
 
-    protected $content;
     public readonly ?string $errCode;
 
-    public function __construct(int $code = 0, string $content = "") {
-        parent::__construct($content, $code);
-        $this->httpCode = $code;
-        $this->content = $content;
+    public function __construct(
+        protected int $httpCode = 0,
+        protected string $content = '',
+    ) {
+        parent::__construct($content, $httpCode);
         try {
             $decoded = \json_decode($content, TRUE, 512, JSON_THROW_ON_ERROR);
             $this->errCode = $decoded['errcode'] ?? NULL;
