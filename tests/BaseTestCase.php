@@ -1,6 +1,6 @@
 <?php
 
-namespace MatrixPhp;
+namespace MatrixPhp\Tests;
 
 use GuzzleHttp\Client;
 use GuzzleHttp\Handler\MockHandler;

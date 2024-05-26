@@ -8,6 +8,7 @@ use MatrixPhp\Exceptions\ValidationException;
 use GuzzleHttp\Client;
 use GuzzleHttp\Psr7\Response;
 use GuzzleHttp\Psr7\Request;
+use MatrixPhp\MatrixHttpApi;
 use phpDocumentor\Reflection\DocBlock\Tags\Param;
 
 class MatrixHttpApiTest extends BaseTestCase {
@@ -46,10 +47,8 @@ class MatrixHttpApiTest extends BaseTestCase {
     ];
 
     protected $mxurl = "mxc://example.com/OonjUOmcuVpUnmOWKtzPmAFe";
-    /**
-     * @var MatrixHttpApi
-     */
-    protected $api;
+
+    protected MatrixHttpApi $api;
 
     protected function setUp(): void
     {
@@ -238,9 +237,7 @@ class MatrixHttpApiTest extends BaseTestCase {
     ///////////////////////////
     /**
      * @param array $args
-     * @throws Exceptions\MatrixRequestException
-     * @throws MatrixException
-     * @throws MatrixHttpLibException
+     * 
      * @dataProvider uploadKeysProvider
      */
     public function testUploadKeys(array $args) {

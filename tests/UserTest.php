@@ -8,23 +8,20 @@ use MatrixPhp\Exceptions\ValidationException;
 use GuzzleHttp\Client;
 use GuzzleHttp\Psr7\Response;
 use GuzzleHttp\Psr7\Request;
+use MatrixPhp\MatrixClient;
+use MatrixPhp\Room;
+use MatrixPhp\User;
 
 class UserTest extends BaseTestCase {
     const HOSTNAME = "http://localhost";
     protected $userId = "@test:localhost";
     protected $roomId = '!test:localhost';
-    /**
-     * @var MatrixClient
-     */
-    protected $client;
-    /**
-     * @var User
-     */
-    protected $user;
-    /**
-     * @var Room
-     */
-    protected $room;
+
+    protected MatrixClient $client;
+
+    protected User $user;
+
+    protected Room $room;
 
     protected function setUp(): void
     {
