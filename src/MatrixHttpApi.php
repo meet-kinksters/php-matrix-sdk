@@ -323,7 +323,7 @@ class MatrixHttpApi {
         if (!$txnId) {
             $txnId = $this->makeTxnId();
         }
-        $path = sprintf('/rooms/%u/send/%s/%u', $roomId, urlencode($eventType), $txnId);
+        $path = sprintf('/rooms/%s/send/%s/%u', $roomId, urlencode($eventType), $txnId);
         $params = [];
         if ($timestamp) {
             $params['ts'] = $timestamp;
@@ -350,7 +350,7 @@ class MatrixHttpApi {
         if (!$txnId) {
             $txnId = $this->makeTxnId();
         }
-        $path = sprintf('/rooms/%u/redact/%s/%u', $roomId, urlencode($eventId), $txnId);
+        $path = sprintf('/rooms/%s/redact/%s/%u', $roomId, urlencode($eventId), $txnId);
         $params = [];
         $content = [];
         if ($reason) {
