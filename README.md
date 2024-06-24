@@ -1,4 +1,9 @@
 # Matrix client SDK for PHP
+
+This package is a fork of the now-abandoned original by [Yoann Celton](https://github.com/Aryess). The architecture does not necessarily reflect best practice in the eyes of current maintainers. Incremental improvements are made as time and resources allow. Contributions are welcome.
+
+---
+
 [![Software License][ico-license]](LICENSE.md)
 [![Software Version][ico-version]](https://packagist.org/packages/meet-kinksters/php-matrix-sdk)
 ![Software License][ico-downloads]
